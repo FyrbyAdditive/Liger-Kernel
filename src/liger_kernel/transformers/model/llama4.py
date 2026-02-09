@@ -82,7 +82,7 @@ def lce_forward(
     token_accuracy = None
 
     # Compute loss
-    if self.training and (labels is not None or shift_labels is not None):
+    if labels is not None or shift_labels is not None:
         result = LigerForCausalLMLoss(
             hidden_states=kept_hidden_states,
             lm_head_weight=self.lm_head.weight,

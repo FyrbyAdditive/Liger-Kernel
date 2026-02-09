@@ -147,7 +147,7 @@ def lce_forward_deprecated(
     loss = None
     logits = None
 
-    if self.training and (labels is not None):
+    if labels is not None:
         shift_hidden_states = hidden_states[..., :-1, :]
         shift_labels = labels[..., 1:]
 
@@ -341,7 +341,7 @@ def lce_forward(
         raise ValueError("skip_logits is True, but labels is None")
 
     if skip_logits is None:
-        skip_logits = self.training and (labels is not None)
+        skip_logits = labels is not None
 
     if skip_logits:
         shift_hidden_states = hidden_states[..., :-1, :]

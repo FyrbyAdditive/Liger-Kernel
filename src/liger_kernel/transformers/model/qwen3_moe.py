@@ -97,7 +97,7 @@ def lce_forward(
     token_accuracy = None
 
     if skip_logits is None:
-        skip_logits = self.training and (labels is not None or shift_labels is not None)
+        skip_logits = labels is not None or shift_labels is not None
 
     # Compute loss
     if skip_logits:

@@ -120,7 +120,7 @@ def lce_forward(
         raise ValueError("skip_logits is True, but labels and shift_labels are None")
 
     if skip_logits is None:
-        skip_logits = self.training and (labels is not None or shift_labels is not None)
+        skip_logits = labels is not None or shift_labels is not None
 
     # Compute loss
     if skip_logits:

@@ -91,7 +91,7 @@ def lce_forward_deprecated(
     loss = None
     logits = None
 
-    if self.training and (labels is not None):
+    if labels is not None:
         kept_hidden_states = hidden_states[:, -num_logits_to_keep:, :]
 
         shift_hidden_states = kept_hidden_states[..., :-1, :].contiguous()
@@ -228,7 +228,7 @@ def lce_forward(
 
     if skip_logits is None:
         # By default, if in training mode, don't materialize logits
-        skip_logits = self.training and (labels is not None or shift_labels is not None)
+        skip_logits = labels is not None or shift_labels is not None
 
     if skip_logits:
         result = LigerForCausalLMLoss(

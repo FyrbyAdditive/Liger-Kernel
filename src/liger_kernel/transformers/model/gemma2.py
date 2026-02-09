@@ -93,7 +93,7 @@ def lce_forward_deprecated(
 
     if skip_logits is None:
         # By default, if in training mode, don't materialize logits
-        skip_logits = self.training and labels is not None
+        skip_logits = labels is not None
 
     if skip_logits:
         shift_hidden_states = hidden_states[..., :-1, :].contiguous()
@@ -234,7 +234,7 @@ def lce_forward(
 
     if skip_logits is None:
         # By default, if in training mode, don't materialize logits
-        skip_logits = self.training and (labels is not None or shift_labels is not None)
+        skip_logits = labels is not None or shift_labels is not None
 
     # Compute loss
     if skip_logits:
